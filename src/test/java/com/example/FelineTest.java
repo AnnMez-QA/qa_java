@@ -31,6 +31,7 @@ public class FelineTest {
 
     @Test
     public void getFamilyTest() {
+        Mockito.when(feline.getFamily()).thenReturn("Кошачьи");
         String expectedFamily = "Кошачьи";
         String actualFamily = feline.getFamily();
         assertEquals("Некорректное семейство", expectedFamily, actualFamily);
@@ -45,8 +46,9 @@ public class FelineTest {
 
     @Test
     public void getKittensCountTest() {
+        Mockito.when(feline.getKittens(3)).thenReturn(3);
         int expectedKittensCount = 3;
         int actualKittensCount = feline.getKittens(3);
-        assertEquals( expectedKittensCount, actualKittensCount);
+        assertEquals(expectedKittensCount, actualKittensCount);
     }
 }

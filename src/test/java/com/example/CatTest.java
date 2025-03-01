@@ -16,10 +16,11 @@ public class CatTest {
     Feline feline;
 
     @Test
-    public void getCatMeowSound(){
+    public void getCatMeowSound() {
         Cat cat = new Cat(new Feline());
         assertEquals("Мяу", cat.getSound());
     }
+
     @Test
 
     public void getFoodTest() throws Exception {

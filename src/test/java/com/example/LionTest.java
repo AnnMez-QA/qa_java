@@ -24,9 +24,10 @@ public class LionTest {
         Exception exception = assertThrows(Exception.class, () -> {
             new Lion("Неизвестный", feline);
         });
-         System.out.println("Фактическое сообщение: " + exception.getMessage());
+        System.out.println("Фактическое сообщение: " + exception.getMessage());
         assertEquals("Используйте допустимые значения пола животного - самец или самка", exception.getMessage());
     }
+
     @Test
     public void getKittensTest() throws Exception {
         Lion lion = new Lion("Самка", feline);
@@ -35,13 +36,12 @@ public class LionTest {
     }
 
     @Test
-    public void  getFoodTest () throws Exception {
+    public void getFoodTest() throws Exception {
         Lion lion = new Lion("Самец", feline);
         List<String> expectedFood = Arrays.asList("Животные", "Птицы", "Рыба");
         Mockito.when(feline.getFood("Хищник")).thenReturn(expectedFood);
         assertEquals(expectedFood, lion.getFood());
     }
-
 
 
 }
