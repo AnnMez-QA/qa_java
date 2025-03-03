@@ -7,8 +7,7 @@ import org.mockito.Mockito;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
-import static org.mockito.ArgumentMatchers.eq;
-import static org.mockito.Mockito.spy;
+
 
 
 public class FelineTest {
@@ -17,8 +16,7 @@ public class FelineTest {
 
     @Before
     public void setUp() {
-
-        feline = spy(new Feline());
+        feline = new Feline();
     }
 
     @Test
@@ -30,7 +28,6 @@ public class FelineTest {
 
     @Test
     public void getFamilyTest() {
-        Mockito.when(feline.getFamily()).thenReturn("Кошачьи");
         String expectedFamily = "Кошачьи";
         String actualFamily = feline.getFamily();
         assertEquals("Некорректное семейство", expectedFamily, actualFamily);
@@ -38,16 +35,16 @@ public class FelineTest {
 
     @Test
     public void getKittensTest() {
-        int result = feline.getKittens();
-        assertEquals(1, result);
-        Mockito.verify(feline).getKittens(eq(1));
+        Feline spyFeline = Mockito.spy(feline);
+        int result = spyFeline.getKittens();
+        assertEquals("Количество котят не соответствует", 1, result);
+        Mockito.verify(spyFeline).getKittens(1);
     }
 
     @Test
     public void getKittensCountTest() {
-        Mockito.when(feline.getKittens(3)).thenReturn(3);
         int expectedKittensCount = 3;
         int actualKittensCount = feline.getKittens(3);
-        assertEquals(expectedKittensCount, actualKittensCount);
+        assertEquals("Неверное количество котят", expectedKittensCount, actualKittensCount);
     }
 }
